@@ -2,7 +2,7 @@
 session_start();
 require '../config/db.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['role']) && !isset($_SESSION['user_id'])) {
     header("Location: ../index.php");
     exit();
 }
@@ -18,7 +18,7 @@ if ($result->num_rows == 0) {
     $query = "INSERT INTO user_courses (user_id, course_id) VALUES ($user_id, $course_id)";
     $conn->query($query);
     echo "Đăng ký thành công!";
-    header("Location: ../pages/account.php");
 } else {
     echo "Bạn đã đăng ký khóa học này!";
 }
+header("Location: ../pages/account.php");

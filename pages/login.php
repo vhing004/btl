@@ -3,7 +3,7 @@ $message_username = "";
 $message_password = "";
 
 if (isset($_GET['submit'])) {
-    require 'db.php';
+    require '../config/db.php';
 
     $username = $_GET['username'];
     $password = $_GET['password'];
@@ -18,6 +18,7 @@ if (isset($_GET['submit'])) {
             $message_password = "Sai mật khẩu!";
         } else {
             header("location: ../index.php");
+            echo 'sdasd';
         }
 
         if ($user['role'] == 'user') {
@@ -28,9 +29,9 @@ if (isset($_GET['submit'])) {
 
         // Lưu tên đăng nhập
         session_start();
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_id'] = $user['user_id'];
     } else {
         $message_username = "Sai tên đăng nhập!";
     }
@@ -44,7 +45,7 @@ if (isset($_GET['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
     <style>
         .error {
             color: red;

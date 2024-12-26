@@ -1,0 +1,133 @@
+.account {
+  max-width: 1100px;
+  margin: auto;
+  &_banner {
+    position: relative;
+    margin-bottom: 100px;
+    &-img {
+      border-radius: 12px;
+    }
+  }
+  &_inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  &_info {
+    position: absolute;
+    top: 100%;
+    left: 50px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    & img {
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+    }
+    &-name {
+      font-size: 22px;
+      transform: translateY(-8px);
+    }
+  }
+  //   intro
+  &_intro {
+    max-width: 425px;
+    width: 100%;
+    &-item {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: #0000001a 0px 0px 5px 0px;
+      line-height: 16px;
+      margin: 0px 0px 20px;
+      padding: 18px 14px;
+    }
+    &-title {
+      display: block;
+      font-weight: 600;
+      line-height: 16px;
+      margin-bottom: 10px;
+    }
+    &-desc {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 20px;
+      & b {
+        color: $main-color;
+        font-style: italic;
+      }
+    }
+  }
+  //   course
+  &_course {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: #0000001a 0px 0px 5px 0px;
+    line-height: 16px;
+    margin: 0px 0px 20px;
+    padding: 20px 15px 0;
+    &-title {
+      font-weight: 600;
+      font-style: italic;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eaeaea;
+      &:last-child {
+        border: 0;
+      }
+      & img {
+        max-width: 230px;
+        width: 100%;
+        border-radius: 12px;
+      }
+    }
+    &-name {
+      display: block;
+      color: #333;
+      font-weight: 600;
+      line-height: 30px;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    &-desc {
+      margin-bottom: 10px;
+      line-height: 24px;
+    }
+    &-btn {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      & a {
+        display: block;
+        padding: 8px 20px;
+        background-color: $main-color;
+        border-radius: 5px;
+        color: #fff;
+        &:last-child {
+          color: $main-color;
+          border: 1px solid $main-color;
+          background: transparent;
+        }
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 0 #000;
+        }
+        &:active {
+          transform: translateY(0);
+          box-shadow: 0 0px 0px #333;
+          transition: all 0s;
+        }
+      }
+    }
+  }
+}

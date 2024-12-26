@@ -19,6 +19,14 @@
     text-decoration: none;
     &:hover {
       transform: translateY(-10px);
+      box-shadow: 1px 10px 10px #ccc;
+    }
+  }
+  &_img {
+    height: 180px;
+    & img {
+      width: 100%;
+      height: 100%;
     }
   }
   &_content {
@@ -35,6 +43,7 @@
     &-desc {
       margin-bottom: 8px;
       display: -webkit-box;
+      height: 50px;
       -webkit-line-clamp: 2;
       overflow: hidden;
       -webkit-box-orient: vertical;

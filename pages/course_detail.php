@@ -2,9 +2,6 @@
 session_start();
 require '../config/db.php';
 
-$course_id = $_GET['course_id'];
-$sql = "SELECT * FROM course_major WHERE course_id = $course_id";
-$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,19 +27,58 @@ $result = $conn->query($sql);
     <div class="wrapper">
         <header class="header">
             <div class="container">
-                <a href="./index.php" class="header_logo">
+                <a href="../index.php" class="header_logo">
                     <h2 class="header_logo-title">Humg Education</h2>
                 </a>
-                <div class="header_search">
-                    <input type="text" placeholder="Tìm kiếm chuyên ngành" />
+                <form class="header_search">
+                    <input type="text" name="search" placeholder="Tìm kiếm chuyên ngành" value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>" />
                     <button class="header_search-btn">Tìm kiếm</button>
-                </div>
+                </form>
                 <div class="header_menu">
-                    <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
-                    <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
-                    <a href="./pages/account.php" class="header_menu-avatar">
-                        <img src="./assets/images/woman.avif" alt="" />
-                    </a>
+                    <?php
+                    // session_start();
+                    if (!isset($_SESSION["user_id"])) {
+                    ?>
+                        <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
+                        <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
+                        <?php } else {
+                        require '../config/db.php';
+                        $sql_user = "SELECT * FROM users WHERE user_id = '" . $_SESSION["user_id"] . "'";
+                        $result_user = $conn->query($sql_user);
+                        if ($result_user->num_rows > 0) {
+                            $row_user = $result_user->fetch_assoc();
+
+                        ?>
+                            <div class="header_menu-avatar">
+                                <div class="header_menu-img">
+                                    <img src="../assets/images/chill.jpg" alt="" />
+                                </div>
+                                <div class="dropdown">
+                                    <div class="dropdown_head">
+                                        <img src="../assets/images/chill.jpg" alt="" />
+                                        <div class="dropdown_info">
+                                            <h4 class="dropdown_name"><?php echo $row_user['fullname']; ?></h4>
+                                            <span class="dropdown_username">@<?php echo $row_user['username']; ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown_inner">
+                                        <?php
+                                        if ($_SESSION['role'] == 'user') {
+                                        ?>
+                                            <a href="./account.php">Trang cá nhân</a>
+                                            <a href="">Cài đặt</a>
+                                        <?php } else {
+                                        ?>
+                                            <a href="../admin/index.php">Trang quản trị</a>
+                                        <?php }
+                                        ?>
+                                        <a href="./logout.php">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php }
+                    }
+                    ?>
                 </div>
             </div>
         </header>
@@ -51,6 +87,14 @@ $result = $conn->query($sql);
         <main class="main">
 
             <?php
+            if (isset($_GET['search'])) {
+                $search = $_GET['search'];
+                $sql3 = "SELECT * FROM course_major WHERE course_name LIKE '%$search%'";
+            } elseif (isset($_GET['course_id'])) {
+                $course_id = $_GET['course_id'];
+                $sql3 = "SELECT * FROM course_major WHERE course_id = $course_id";
+            }
+            $result = $conn->query($sql3);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
             ?>
@@ -122,9 +166,19 @@ $result = $conn->query($sql);
                             </div>
                             <div class="courseDetail_course-content">
                                 <p class="courseDetail_course-price"> <?php echo $row['price']; ?> VND</p>
-                                <a
-                                    href="../handler/dangky.php?<?php echo $row['course_id']; ?>"
-                                    class="courseDetail_course-btn">Đăng ký ngay</a>
+                                <?php
+                                if ($_SESSION['role'] == 'user') {
+                                ?>
+                                    <a
+                                        href="../handler/dangky.php?course_id=<?php echo $row['course_id']; ?>"
+                                        class="courseDetail_course-btn">Đăng ký ngay</a>
+                                <?php } else {
+                                ?>
+                                    <a
+                                        href=""
+                                        class="courseDetail_course-btn">Bạn là ADMIN</a>
+                                <?php }
+                                ?>
                                 <div class="courseDetail_course-intro">
                                     <div class="courseDetail_course-item">
                                         <i class="fa-solid fa-check"></i>
@@ -147,6 +201,8 @@ $result = $conn->query($sql);
                         </div>
                     </div>
             <?php }
+            } else {
+                echo "<main style='text-align: center; padding-top: 50px'>Không có khóa học nào</main>";
             }
             ?>
         </main>
