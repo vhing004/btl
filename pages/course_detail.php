@@ -66,7 +66,7 @@ require '../config/db.php';
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
                                             <a href="./account.php">Trang cá nhân</a>
-                                            <a href="">Cài đặt</a>
+                                            <a href="./personal.php">Cài đặt</a>
                                         <?php } else {
                                         ?>
                                             <a href="../admin/index.php">Trang quản trị</a>

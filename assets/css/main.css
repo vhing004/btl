@@ -620,6 +620,7 @@ a {
   font-style: italic;
 }
 .account_course {
+  flex: 1;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1019607843) 0px 0px 5px 0px;

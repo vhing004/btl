@@ -69,7 +69,7 @@ $result = $conn->query($sql);
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
                                             <a href="./account.php">Trang cá nhân</a>
-                                            <a href="">Cài đặt</a>
+                                            <a href="./personal.php">Cài đặt</a>
                                         <?php } else {
                                         ?>
                                             <a href="../admin/index.php">Trang quản trị</a>
@@ -131,25 +131,29 @@ $result = $conn->query($sql);
                         INNER JOIN user_courses ON course_major.course_id = user_courses.course_id 
                         WHERE user_courses.user_id=$user_id";
                     $result_course = $conn->query($sql_course);
-                    while ($row_course = $result_course->fetch_assoc()) {
+                    if ($result_course->num_rows > 0) {
+                        while ($row_course = $result_course->fetch_assoc()) {
                     ?>
-                        <div class="account_course-item">
-                            <img src="<?php echo $row_course['course_img'] ?>" alt="">
-                            <div class="account_course-content">
-                                <h4 class="account_course-name"><?php echo $row_course['course_name'] ?></h4>
-                                <p class="account_course-desc"><?php echo $row_course['description'] ?></p>
-                                <div class="account_course-btn">
-                                    <a href="./course_detail.php?course_id=<?php echo $row_course['course_id']; ?>">Xem khóa học</a>
-                                    <?php
-                                    if ($_SESSION['role'] == 'user') {
-                                    ?>
-                                        <a href="../handler/unreg.php?course_id=<?php echo $row_course['course_id']; ?>">Hủy </a>
-                                    <?php }
-                                    ?>
+                            <div class="account_course-item">
+                                <img src="<?php echo $row_course['course_img'] ?>" alt="">
+                                <div class="account_course-content">
+                                    <h4 class="account_course-name"><?php echo $row_course['course_name'] ?></h4>
+                                    <p class="account_course-desc"><?php echo $row_course['description'] ?></p>
+                                    <div class="account_course-btn">
+                                        <a href="./course_detail.php?course_id=<?php echo $row_course['course_id']; ?>">Xem khóa học</a>
+                                        <?php
+                                        if ($_SESSION['role'] == 'user') {
+                                        ?>
+                                            <a href="../handler/unreg.php?course_id=<?php echo $row_course['course_id']; ?>">Hủy </a>
+                                        <?php }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php   }
+                    <?php }
+                    } else {
+                        echo " <main class='main' style='margin-bottom: 15px;'>Bạn chưa đăng ký khóa học nào !</main>";
+                    }
                     ?>
                 </div>
             </div>

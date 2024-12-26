@@ -29,7 +29,6 @@
 
 
         <div class="container">
-            <h2>Chào mừng đến với trang dành cho ADMIN</h2>
 
             <!-- USERS -->
             <h3>Bảng USER</h3>

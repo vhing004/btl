@@ -9,37 +9,38 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    require '../config/db.php';
-    if ($_SESSION['role'] == 'admin') {
-    ?>
-        <form action="" method="post">
-            <h3>Thêm dữ liệu USER</h3>
-            <div class="form_group">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username" require>
-            </div>
-            <div class="form_group">
-                <label>Email</label>
-                <input type="text" name="email" placeholder="Email" require>
-            </div>
-            <div class="form_group">
-                <label>Fullname</label>
-                <input type="text" name="fullname" placeholder="Fullname" require>
-            </div>
-            <div class="form_group">
-                <label>Gender</label>
-                <input type="text" name="gender" placeholder="Username" require>
-            </div>
-            <div class="form_group">
-                <label>Role</label>
-                <input type="text" name="role" placeholder="Role" require>
-            </div>
-            <input type="submit" name="submit" value="Thêm">
-        </form>
-    <?php }
-    ?>
+    <div class="wrapper">
+        <?php
+        session_start();
+        require '../config/db.php';
+        if ($_SESSION['role'] == 'admin') {
+        ?>
+            <form action="" class="form" method="post">
+                <h3 class="title">Thêm dữ liệu USER</h3>
+                <div class="form_group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" require>
+                </div>
+                <div class="form_group">
+                    <label>Email</label>
+                    <input type="text" name="email" placeholder="Email" require>
+                </div>
+                <div class="form_group">
+                    <label>Fullname</label>
+                    <input type="text" name="fullname" placeholder="Fullname" require>
+                </div>
+                <div class="form_group" style="display: flex; gap: 10px;">
+                    <label>Gender</label>
+                    <select name="gender">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                </div>
+                <input class="btn" type="submit" name="submit" value="Thêm">
+            </form>
+        <?php }
+        ?>
+    </div>
 </body>
 
 </html>

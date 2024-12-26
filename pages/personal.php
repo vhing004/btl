@@ -1,11 +1,11 @@
 <?php
 session_start();
-require '../config/db.php';
 
-$course_id = $_GET['course_id'];
-$sql = "SELECT * FROM course_major WHERE course_id = $course_id";
-$result = $conn->query($sql);
+if (!isset($_SESSION['username'])) {
+    echo "<h2 style='margin-top: 80px; text-align: center;'><a href='login.php'>Bạn chưa đăng nhập</a></h2>";
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +24,7 @@ $result = $conn->query($sql);
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/app.css" />
 </head>
 
 <body>
@@ -69,7 +70,7 @@ $result = $conn->query($sql);
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
                                             <a href="./account.php">Trang cá nhân</a>
-                                            <a href="./personal.php">Cài đặt</a>
+                                            <a href="">Cài đặt</a>
                                         <?php } else {
                                         ?>
                                             <a href="../admin/index.php">Trang quản trị</a>
@@ -86,72 +87,45 @@ $result = $conn->query($sql);
             </div>
         </header>
 
+        <?php
+        if ($_SESSION['role'] == 'user') {
+            require '../config/db.php';
+            $id = $_SESSION['user_id'];
+            $sql_edit = "SELECT * FROM users WHERE user_id=$id";
+            $result = $conn->query($sql_edit);
+            if ($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
 
-        <main class="main">
-            <div class="course">
-                <div class="container">
-                    <?php
-                    require '../config/db.php';
-                    $major_id = $_GET['major_id'];
-                    $sql = "SELECT * FROM major WHERE major_id=$major_id";
-                    $row = ($conn->query($sql))->fetch_assoc();
-                    ?>
-                    <div class="major_banner">
-                        <div class="major_banner-img">
-                            <img src="<?php echo $row['major_img']; ?>" alt="" />
+        ?>
+                <main class="main account">
+                    <div class="main_table">
+                        <h2 class="title">Thông tin tài khoản</h2>
+                        <div class="table_group">
+                            <p>Id: <span><?php echo $user['user_id']; ?></span></p>
                         </div>
-                        <div class="major_banner-inner" style="background-image: url(<?php echo $row['major_img'] ?>)">
-                            <h5 class="major_banner-title"><?php echo $row['name'] ?></h5>
-                            <p class="major_banner-desc"><?php echo $row['description'] ?></p>
-                            <span class="major_banner-code">Mã: <?php echo $row['major_code'] ?></span>
+                        <div class="table_group">
+                            <p>Tên: <span><?php echo $user['username']; ?></span></p>
                         </div>
+                        <div class="table_group">
+                            <p>Email: <span><?php echo $user['email']; ?></span></p>
+                        </div>
+                        <div class="table_group">
+                            <p>Giới tính: <span><?php echo $user['gender']; ?></span></p>
+                        </div>
+                        <div class="table_group">
+                            <p>Mật khẩu: <span><?php echo $user['password']; ?></span></p>
+                        </div>
+                        <div class="table_group end">
+                            <p>Ngày tạo: <span><?php echo $user['created_at']; ?></span></p>
+                        </div>
+                        <button class="table_btn"><a href="../handler/account_edit.php">Sửa thông tin</a></button>
                     </div>
-                    <div class="course_list">
-                        <?php
-                        $sql_course = "SELECT * FROM course_major WHERE major_id = " . $row['major_id'];
-                        $result_course = $conn->query($sql_course);
-                        if ($result_course->num_rows > 0) {
-                            while ($row2 = $result_course->fetch_assoc()) {
-                        ?>
-                                <a href="./course_detail.php?course_id=<?php echo $row2['course_id']; ?>" class="course_item">
-                                    <div class="course_img">
-                                        <img src="<?php echo $row2['course_img']; ?>" alt="" />
-                                    </div>
-                                    <div class="course_content">
-                                        <h3 class="course_content-title">
-                                            <?php echo $row2['course_name']; ?>
-                                        </h3>
-                                        <p class="course_content-desc">
-                                            <?php echo $row2['description']; ?>
-                                        </p>
-                                        <div class="course_content-end">
-                                            <div class="course_content-rating">
-                                                <span class="video"><?php echo $row2['video']; ?> Videos</span>
-                                                <span class="star"><b><?php echo $row2['rating']; ?></b><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star-half-stroke"></i></span>
-                                            </div>
-                                            <span class="course_content-price"><?php echo $row2['price']; ?> VND</span>
-                                        </div>
-                                    </div>
-                                </a>
-                        <?php  }
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class="footer"></footer>
+                </main>
+        <?php }
+        }
+        ?>
     </div>
+
 </body>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="./js/app.js"></script>
 
 </html>

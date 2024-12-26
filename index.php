@@ -61,10 +61,10 @@
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
                                             <a href="./pages/account.php">Trang cá nhân</a>
-                                            <a href="">Cài đặt</a>
+                                            <a href="./pages/personal.php">Cài đặt</a>
                                         <?php } else {
                                         ?>
-                                        <a href="./admin/index.php">Trang quản trị</a>
+                                            <a href="./admin/index.php">Trang quản trị</a>
                                         <?php }
                                         ?>
                                         <a href="./pages/logout.php">Đăng xuất</a>

@@ -31,7 +31,7 @@
         <div class="container">
             <!-- USERS_COURSES -->
             <h3>Bảng USER_COURSES</h3>
-            <form action="">
+            <form action="" class="index">
                 <input type="number" name="search_course_user" placeholder="Tìm kiếm">
                 <button type="submit">Search</button>
             </form>

@@ -9,33 +9,35 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    require '../config/db.php';
-    if ($_SESSION['role'] == 'admin') {
-    ?>
-        <form action="" method="post">
-            <h3>Thêm dữ liệu MAJOR</h3>
-            <div class="form_group">
-                <label>Major_img</label>
-                <input type="text" name="major_img" placeholder="Major_img" require>
-            </div>
-            <div class="form_group">
-                <label>Major_code</label>
-                <input type="text" name="ajor_code" placeholder="Major_code" require>
-            </div>
-            <div class="form_group">
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Name" require>
-            </div>
-            <div class="form_group">
-                <label>Description</label>
-                <input type="text" name="description" placeholder="Description" require>
-            </div>
-            <input type="submit" name="submit" value="Thêm">
-        </form>
-    <?php }
-    ?>
+    <div class="wrapper">
+        <?php
+        session_start();
+        require '../config/db.php';
+        if ($_SESSION['role'] == 'admin') {
+        ?>
+            <form class="form" action="" method="post">
+                <h3 class="title">Thêm dữ liệu MAJOR</h3>
+                <div class="form_group">
+                    <label>Ảnh</label>
+                    <input type="text" name="major_img" placeholder="Link ảnh" require>
+                </div>
+                <div class="form_group">
+                    <label>Mã chuyên ngành</label>
+                    <input type="text" name="ajor_code" placeholder="Mã" require>
+                </div>
+                <div class="form_group">
+                    <label>Tên chuyên ngành </label>
+                    <input type="text" name="name" placeholder="Tên" require>
+                </div>
+                <div class="form_group">
+                    <label>Mô tả</label>
+                    <input type="text" name="description" placeholder="Mô tả" require>
+                </div>
+                <input class="btn" type="submit" name="submit" value="Thêm">
+            </form>
+        <?php }
+        ?>
+    </div>
 </body>
 
 </html>

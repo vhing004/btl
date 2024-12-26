@@ -9,49 +9,51 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    require '../config/db.php';
-    if ($_SESSION['role'] == 'admin') {
-    ?>
-        <form action="" method="post">
-            <h3>Thêm dữ liệu COURSE</h3>
-            <div class="form_group">
-                <label>course_img</label>
-                <input type="text" name="course_img" placeholder="course_img" require>
-            </div>
-            <div class="form_group">
-                <label>course_code</label>
-                <input type="text" name="course_code" placeholder="course_code" require>
-            </div>
-            <div class="form_group">
-                <label>course_name</label>
-                <input type="text" name="course_name" placeholder="course_name" require>
-            </div>
-            <div class="form_group">
-                <label>description</label>
-                <input type="text" name="description" placeholder="course_img" require>
-            </div>
-            <div class="form_group">
-                <label>video</label>
-                <input type="text" name="video" placeholder="video" require>
-            </div>
-            <div class="form_group">
-                <label>rating</label>
-                <input type="text" name="rating" placeholder="rating" require>
-            </div>
-            <div class="form_group">
-                <label>price</label>
-                <input type="text" name="price" placeholder="price" require>
-            </div>
-            <div class="form_group">
-                <label>major_id</label>
-                <input type="text" name="major_id" placeholder="major_id" require>
-            </div>
-            <input type="submit" name="submit" value="Thêm">
-        </form>
-    <?php }
-    ?>
+    <div class="wrapper">
+        <?php
+        session_start();
+        require '../config/db.php';
+        if ($_SESSION['role'] == 'admin') {
+        ?>
+            <form action="" class="form" method="post">
+                <h3 class="title">Thêm dữ liệu COURSE</h3>
+                <div class="form_group">
+                    <label>Ảnh</label>
+                    <input type="text" name="course_img" placeholder="Link ảnh" require>
+                </div>
+                <div class="form_group">
+                    <label>Mã khóa học</label>
+                    <input type="text" name="course_code" placeholder="Mã" require>
+                </div>
+                <div class="form_group">
+                    <label>Tên khóa học</label>
+                    <input type="text" name="course_name" placeholder="Tên" require>
+                </div>
+                <div class="form_group">
+                    <label>Mô tả</label>
+                    <input type="text" name="description" placeholder="Mô tảtả" require>
+                </div>
+                <div class="form_group">
+                    <label>Video</label>
+                    <input type="text" name="video" placeholder="Video" require>
+                </div>
+                <div class="form_group">
+                    <label>Đánh giá</label>
+                    <input type="text" name="rating" placeholder="Đánh giá" require>
+                </div>
+                <div class="form_group">
+                    <label>GiáGiá</label>
+                    <input type="text" name="price" placeholder="GiáGiá" require>
+                </div>
+                <div class="form_group">
+                    <label>Mã chuyên ngành</label>
+                    <input type="text" name="major_id" placeholder="Mã chuyên ngành" require>
+                </div>
+                <input class="btn" type="submit" name="submit" value="Thêm">
+            </form>
+        <?php }
+        ?>
+    </div>
 </body>
 
 </html>

@@ -33,7 +33,7 @@
 
             <!-- USERS -->
             <h3>Bảng USER</h3>
-            <form action="">
+            <form class="index" action="">
                 <input type="text" name="search_user" placeholder="Tìm kiếm">
                 <button type="submit">Search</button>
             </form>
@@ -76,7 +76,7 @@
 
             <!-- MAJOR -->
             <h3>Bảng MAJOR</h3>
-            <form action="">
+            <form class="index" action="">
                 <input type="text" name="search_major" placeholder="Tìm kiếm">
                 <button type="submit">Search</button>
             </form>
@@ -115,7 +115,7 @@
 
             <!-- COURSE -->
             <h3>Bảng COURSE</h3>
-            <form action="">
+            <form class="index" action="">
                 <input type="text" name="search_course" placeholder="Tìm kiếm">
                 <button type="submit">Search</button>
             </form>
@@ -162,7 +162,7 @@
 
             <!-- USERS_COURSES -->
             <h3>Bảng USER_COURSES</h3>
-            <form action="">
+            <form class="index" action="">
                 <input type="number" name="search_course_user" placeholder="Tìm kiếm">
                 <button type="submit">Search</button>
             </form>
