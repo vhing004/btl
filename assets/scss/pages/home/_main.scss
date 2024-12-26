@@ -1,0 +1,39 @@
+// MAIN
+.main {
+  margin-top: 50px;
+  //   BANNER
+  & .banner {
+    padding: 20px 0;
+    position: relative;
+    & .slick-dots {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0 10px;
+      color: #762828;
+      transition: all 0.25s linear;
+    }
+    & .slick-dots li {
+      list-style: none;
+    }
+    & .slick-dots button {
+      cursor: pointer;
+      font-size: 0px;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      border: none;
+      outline: none;
+      //   background-color: $gray-text;
+    }
+    & .slick-dots .slick-active button {
+      background: $main-color;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

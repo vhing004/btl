@@ -1,0 +1,82 @@
+// HEADER
+.header {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px #ccc;
+
+  & .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  &_logo {
+    text-decoration: none;
+    display: block;
+    &-title {
+      font-size: 20px;
+      color: $main-color;
+    }
+  }
+
+  &_search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    height: 40px;
+    &-btn {
+      all: unset;
+      border-left: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 15px;
+      background-color: $main-color;
+      line-height: 40px;
+      padding: 0 15px;
+      color: #fff;
+    }
+    & input {
+      all: unset;
+      padding: 5px 0 5px 15px;
+      font-size: 15px;
+      color: #333;
+    }
+  }
+
+  &_menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    &-btn {
+      font-size: 15px;
+      line-height: 14px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    & .btn2 {
+      padding: 10px 20px;
+      background-color: $main-color;
+      color: #fff;
+      border-radius: 50px;
+      font-weight: normal;
+    }
+    &-avatar {
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      transform: translateY(4px);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+  transition: all 0.25s;
+}
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+.container {
+  max-width: 1400px;
+  margin: auto;
+}

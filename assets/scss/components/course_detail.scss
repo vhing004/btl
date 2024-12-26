@@ -1,0 +1,138 @@
+.courseDetail {
+  position: relative;
+  &_banner {
+    background-color: $main-color;
+    padding: 48px 40px;
+    margin-bottom: 30px;
+    &-inner {
+      max-width: 950px;
+      width: 100%;
+      padding-left: 80px;
+      color: #ececec;
+    }
+    &-title {
+      color: #ececec;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 60px;
+      padding: 16px 0px;
+    }
+    &-teacher {
+      & b {
+        text-decoration: underline;
+        font-style: italic;
+      }
+    }
+    &-desc {
+      color: #ececec;
+      line-height: 24px;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    &-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 15px;
+      & b {
+        color: #ffdf00;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &_intro {
+    &-inner {
+      border-color: #929292;
+      border-radius: 4px;
+      border-style: solid;
+      border-width: 0.877193px;
+      line-height: 24px;
+      margin: 0px 0px 32px;
+      padding: 24px;
+      max-width: 900px;
+    }
+    &-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      & i {
+        transform: translateY(5px);
+      }
+    }
+  }
+
+  &_course {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    z-index: 100;
+    background-color: #fff;
+    max-width: 450px;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px #ccc;
+    &-img {
+      position: relative;
+      & .play {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        & i {
+          font-size: 60px;
+          color: #fff;
+        }
+      }
+    }
+    &-content {
+      padding: 20px;
+    }
+    &-price {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 36px;
+      color: $main-color;
+      margin-bottom: 20px;
+    }
+    &-btn {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 10px 0;
+      background-color: $main-color;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+    &-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}

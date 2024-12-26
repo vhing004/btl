@@ -1,0 +1,13 @@
+{
+  "name": "btl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch assets/scss:assets/css",
+    "scss": "sass ./assets/scss/main.scss ./assets/css/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
