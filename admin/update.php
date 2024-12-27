@@ -22,7 +22,8 @@
             $result_user = mysqli_query($conn, $sql_user);
             $row_user = mysqli_fetch_assoc($result_user);
         ?>
-            <form action="" method="post">
+            <form action="" class="index2" method="post">
+                <h3 class="title">Chỉnh Sửa USER</h3>
                 <input type="text" name="user_id" value="<?php echo $row_user['user_id']; ?>" hidden>
                 <div class="form_group">
                     <label>Username</label>
@@ -40,7 +41,7 @@
                     <label>Gender</label>
                     <input type="text" name="gender" value="<?php echo $row_user['gender']; ?>">
                 </div>
-                <input type="submit" name="submit" value="Update">
+                <input type="submit" name="submit" value="Update" class="btn">
             </form>
         <?php } ?>
 
@@ -53,7 +54,8 @@
             $result_major = mysqli_query($conn, $sql_major);
             $row_major = mysqli_fetch_assoc($result_major);
         ?>
-            <form action="" method="post">
+            <form action="" class="index2" method="post">
+                <h3 class="title">Chỉnh Sửa MAJOR</h3>
                 <input type="text" name="major_id" value="<?php echo $row_major['major_id']; ?>" hidden>
                 <div class="form_group">
                     <label>Image</label>
@@ -71,7 +73,7 @@
                     <label>Description</label>
                     <input type="text" name="description" value="<?php echo $row_major['description']; ?>">
                 </div>
-                <input type="submit" name="submit" value="Update">
+                <input type="submit" name="submit" value="Update" class="btn">
             </form>
         <?php } ?>
 
@@ -84,7 +86,8 @@
             $result_course = mysqli_query($conn, $sql_course);
             $row_course = mysqli_fetch_assoc($result_course);
         ?>
-            <form action="" method="post">
+            <form action="" class="index2" method="post">
+                <h3 class="title">Chỉnh Sửa COURSE</h3>
                 <input type="text" name="course_id" value="<?php echo $row_course['course_id']; ?>" hidden>
                 <div class="form_group">
                     <label>Image</label>
@@ -118,7 +121,7 @@
                     <label>Major ID</label>
                     <input type="text" name="major_id" value="<?php echo $row_course['major_id']; ?>">
                 </div>
-                <input type="submit" name="submit" value="Update">
+                <input type="submit" name="submit" value="Update" class="btn">
             </form>
         <?php } ?>
     <?php }
