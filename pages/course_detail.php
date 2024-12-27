@@ -39,8 +39,8 @@ require '../config/db.php';
                     // session_start();
                     if (!isset($_SESSION["user_id"])) {
                     ?>
-                        <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
-                        <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
+                        <a href="./register.php" class="header_menu-btn">Đăng ký</a>
+                        <a href="./login.php" class="header_menu-btn btn2">Đăng nhập</a>
                         <?php } else {
                         require '../config/db.php';
                         $sql_user = "SELECT * FROM users WHERE user_id = '" . $_SESSION["user_id"] . "'";
@@ -65,6 +65,7 @@ require '../config/db.php';
                                         <?php
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
+                                            <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="./personal.php">Cài đặt</a>
                                         <?php } else {
@@ -85,7 +86,6 @@ require '../config/db.php';
 
 
         <main class="main">
-
             <?php
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
@@ -167,16 +167,24 @@ require '../config/db.php';
                             <div class="courseDetail_course-content">
                                 <p class="courseDetail_course-price"> <?php echo $row['price']; ?> VND</p>
                                 <?php
-                                if ($_SESSION['role'] == 'user') {
+                                if (isset($_SESSION['username'])) {
+
+                                    if ($_SESSION['role'] == 'user') {
                                 ?>
+                                        <a
+                                            href="../handler/dangky.php?course_id=<?php echo $row['course_id']; ?>"
+                                            class="courseDetail_course-btn">Đăng ký ngay</a>
+                                    <?php } else {
+                                    ?>
+                                        <a
+                                            href=""
+                                            class="courseDetail_course-btn">Bạn là ADMIN</a>
+                                    <?php }
+                                } else {
+                                    ?>
                                     <a
-                                        href="../handler/dangky.php?course_id=<?php echo $row['course_id']; ?>"
+                                        href="./login.php"
                                         class="courseDetail_course-btn">Đăng ký ngay</a>
-                                <?php } else {
-                                ?>
-                                    <a
-                                        href=""
-                                        class="courseDetail_course-btn">Bạn là ADMIN</a>
                                 <?php }
                                 ?>
                                 <div class="courseDetail_course-intro">
@@ -206,7 +214,8 @@ require '../config/db.php';
             }
             ?>
         </main>
-        <footer class="footer"></footer>
+        <button id="scrollToTop" class="scroll-top-btn"><i class="fa-solid fa-chevron-up"></i></button>
+
     </div>
 </body>
 <script

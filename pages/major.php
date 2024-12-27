@@ -42,8 +42,8 @@ $result = $conn->query($sql);
                     // session_start();
                     if (!isset($_SESSION["user_id"])) {
                     ?>
-                        <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
-                        <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
+                        <a href="./register.php" class="header_menu-btn">Đăng ký</a>
+                        <a href="./login.php" class="header_menu-btn btn2">Đăng nhập</a>
                         <?php } else {
                         require '../config/db.php';
                         $sql_user = "SELECT * FROM users WHERE user_id = '" . $_SESSION["user_id"] . "'";
@@ -68,6 +68,7 @@ $result = $conn->query($sql);
                                         <?php
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
+                                            <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="./personal.php">Cài đặt</a>
                                         <?php } else {
@@ -106,30 +107,30 @@ $result = $conn->query($sql);
                             <span class="major_banner-code">Mã: <?php echo $row['major_code'] ?></span>
                         </div>
                     </div>
-                    <div class="course_list">
+                    <div class="major2_list">
                         <?php
                         $sql_course = "SELECT * FROM course_major WHERE major_id = " . $row['major_id'];
                         $result_course = $conn->query($sql_course);
                         if ($result_course->num_rows > 0) {
                             while ($row2 = $result_course->fetch_assoc()) {
                         ?>
-                                <a href="./course_detail.php?course_id=<?php echo $row2['course_id']; ?>" class="course_item">
-                                    <div class="course_img">
+                                <a href="./course_detail.php?course_id=<?php echo $row2['course_id']; ?>" class="major2_item">
+                                    <div class="major2_img">
                                         <img src="<?php echo $row2['course_img']; ?>" alt="" />
                                     </div>
-                                    <div class="course_content">
-                                        <h3 class="course_content-title">
+                                    <div class="major2_content">
+                                        <h3 class="major2_content-title">
                                             <?php echo $row2['course_name']; ?>
                                         </h3>
-                                        <p class="course_content-desc">
+                                        <p class="major2_content-desc">
                                             <?php echo $row2['description']; ?>
                                         </p>
-                                        <div class="course_content-end">
-                                            <div class="course_content-rating">
+                                        <div class="major2_content-end">
+                                            <div class="major2_content-rating">
                                                 <span class="video"><?php echo $row2['video']; ?> Videos</span>
                                                 <span class="star"><b><?php echo $row2['rating']; ?></b><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star-half-stroke"></i></span>
                                             </div>
-                                            <span class="course_content-price"><?php echo $row2['price']; ?> VND</span>
+                                            <span class="major2_content-price"><?php echo $row2['price']; ?> VND</span>
                                         </div>
                                     </div>
                                 </a>
@@ -140,18 +141,7 @@ $result = $conn->query($sql);
                 </div>
             </div>
         </main>
-        <footer class="footer"></footer>
     </div>
 </body>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="./js/app.js"></script>
 
 </html>

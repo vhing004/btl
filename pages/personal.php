@@ -43,8 +43,8 @@ if (!isset($_SESSION['username'])) {
                     // session_start();
                     if (!isset($_SESSION["user_id"])) {
                     ?>
-                        <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
-                        <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
+                        <a href="./register.php" class="header_menu-btn">Đăng ký</a>
+                        <a href="./login.php" class="header_menu-btn btn2">Đăng nhập</a>
                         <?php } else {
                         require '../config/db.php';
                         $sql_user = "SELECT * FROM users WHERE user_id = '" . $_SESSION["user_id"] . "'";
@@ -69,6 +69,7 @@ if (!isset($_SESSION['username'])) {
                                         <?php
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
+                                            <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="">Cài đặt</a>
                                         <?php } else {
@@ -88,40 +89,46 @@ if (!isset($_SESSION['username'])) {
         </header>
 
         <?php
-        if ($_SESSION['role'] == 'user') {
-            require '../config/db.php';
-            $id = $_SESSION['user_id'];
-            $sql_edit = "SELECT * FROM users WHERE user_id=$id";
-            $result = $conn->query($sql_edit);
-            if ($result->num_rows > 0) {
-                $user = $result->fetch_assoc();
+        if (isset($_SESSION['username'])) {
+            if ($_SESSION['role'] == 'user') {
+                require '../config/db.php';
+                $id = $_SESSION['user_id'];
+                $sql_edit = "SELECT * FROM users WHERE user_id=$id";
+                $result = $conn->query($sql_edit);
+                if ($result->num_rows > 0) {
+                    $user = $result->fetch_assoc();
 
         ?>
-                <main class="main account">
-                    <div class="main_table">
-                        <h2 class="title">Thông tin tài khoản</h2>
-                        <div class="table_group">
-                            <p>Id: <span><?php echo $user['user_id']; ?></span></p>
+                    <main class="main account">
+                        <div class="main_table">
+                            <h2 class="title">Thông tin tài khoản</h2>
+                            <div class="table_group">
+                                <p>Id: <span><?php echo $user['user_id']; ?></span></p>
+                            </div>
+                            <div class="table_group">
+                                <p>Tên: <span><?php echo $user['username']; ?></span></p>
+                            </div>
+                            <div class="table_group">
+                                <p>Email: <span><?php echo $user['email']; ?></span></p>
+                            </div>
+                            <div class="table_group">
+                                <p>Giới tính: <span><?php echo $user['gender']; ?></span></p>
+                            </div>
+                            <div class="table_group">
+                                <p>Mật khẩu: <span><?php echo $user['password']; ?></span></p>
+                            </div>
+                            <div class="table_group end">
+                                <p>Ngày tạo: <span><?php echo $user['created_at']; ?></span></p>
+                            </div>
+                            <button class="table_btn"><a href="../handler/account_edit.php">Sửa thông tin</a></button>
                         </div>
-                        <div class="table_group">
-                            <p>Tên: <span><?php echo $user['username']; ?></span></p>
-                        </div>
-                        <div class="table_group">
-                            <p>Email: <span><?php echo $user['email']; ?></span></p>
-                        </div>
-                        <div class="table_group">
-                            <p>Giới tính: <span><?php echo $user['gender']; ?></span></p>
-                        </div>
-                        <div class="table_group">
-                            <p>Mật khẩu: <span><?php echo $user['password']; ?></span></p>
-                        </div>
-                        <div class="table_group end">
-                            <p>Ngày tạo: <span><?php echo $user['created_at']; ?></span></p>
-                        </div>
-                        <button class="table_btn"><a href="../handler/account_edit.php">Sửa thông tin</a></button>
-                    </div>
-                </main>
+                    </main>
         <?php }
+            } else {
+                echo "<main class='main' >Bạn không có quyền truy cập trang này <a href='../admin/index.php'>Về trang ADMIN</a></main>";
+            }
+        } else {
+            header("location: ./login.php");
         }
         ?>
     </div>

@@ -60,6 +60,7 @@
                                         <?php
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
+                                            <a href="./index.php">Trang chủ</a>
                                             <a href="./pages/account.php">Trang cá nhân</a>
                                             <a href="./pages/personal.php">Cài đặt</a>
                                         <?php } else {
@@ -174,7 +175,8 @@
                 ?>
             </div>
         </main>
-        <footer class="footer"></footer>
+        <button id="scrollToTop" class="scroll-top-btn"><i class="fa-solid fa-chevron-up"></i></button>
+
     </div>
 </body>
 <script

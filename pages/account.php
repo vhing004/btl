@@ -1,7 +1,6 @@
 <?php
 session_start();
 require '../config/db.php';
-
 $course_id = $_GET['course_id'];
 $sql = "SELECT * FROM course_major WHERE course_id = $course_id";
 $result = $conn->query($sql);
@@ -42,8 +41,8 @@ $result = $conn->query($sql);
                     // session_start();
                     if (!isset($_SESSION["user_id"])) {
                     ?>
-                        <a href="./pages/register.php" class="header_menu-btn">Đăng ký</a>
-                        <a href="./pages/login.php" class="header_menu-btn btn2">Đăng nhập</a>
+                        <a href="./register.php" class="header_menu-btn">Đăng ký</a>
+                        <a href="./login.php" class="header_menu-btn btn2">Đăng nhập</a>
                         <?php } else {
                         require '../config/db.php';
                         $sql_user = "SELECT * FROM users WHERE user_id = '" . $_SESSION["user_id"] . "'";
@@ -68,6 +67,7 @@ $result = $conn->query($sql);
                                         <?php
                                         if ($_SESSION['role'] == 'user') {
                                         ?>
+                                            <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="./personal.php">Cài đặt</a>
                                         <?php } else {
@@ -88,88 +88,82 @@ $result = $conn->query($sql);
 
 
         <div class="account">
-            <div class="account_banner">
-                <img class="account_banner-img" src="../assets/images/banner.png" alt="">
-                <div class="account_info">
-                    <img src="../assets/images/chill.jpg" alt="">
-                    <?php
-                    require '../config/db.php';
-                    // 
-                    if (isset($_GET['user_id'])) {
-                        $user_id = $_GET['user_id'];
-                    } else {
-                        $user_id = $_SESSION['user_id'];
-                    }
-                    // 
-                    // $user_id = &$_SESSION['user_id'];
-                    $sql = "SELECT * FROM users WHERE user_id =$user_id";
-                    $row = ($conn->query($sql))->fetch_assoc();
-                    ?>
-                    <h3 class="account_info-name"><?php echo $row['fullname']; ?></h3>
-                    <?php ?>
-                </div>
-            </div>
-
-            <div class="account_inner">
-                <!-- intro -->
-                <div class="account_intro">
-                    <div class="account_intro-item">
-                        <span class="account_intro-title">Giới thiệu</span>
-                        <p class="account_intro-desc"><i class="fa-solid fa-user-group"></i><span>Thành viên của <b>HUMG Education - Học để đi làm</b> từ một năm trước</span></p>
-                    </div>
-                    <div class="account_intro-item">
-                        <span class="account_intro-title">Hoạt động gần đây</span>
-                        <p class="account_intro-desc">Chưa có hoạt động gần đây</p>
+            <?php
+            if (isset($_SESSION['username'])) {
+            ?>
+                <div class="account_banner">
+                    <img class="account_banner-img" src="../assets/images/banner.png" alt="">
+                    <div class="account_info">
+                        <img src="../assets/images/chill.jpg" alt="">
+                        <?php
+                        require '../config/db.php';
+                        // 
+                        if (isset($_GET['user_id'])) {
+                            $user_id = $_GET['user_id'];
+                        } else {
+                            $user_id = $_SESSION['user_id'];
+                        }
+                        // 
+                        // $user_id = &$_SESSION['user_id'];
+                        $sql = "SELECT * FROM users WHERE user_id =$user_id";
+                        $row = ($conn->query($sql))->fetch_assoc();
+                        ?>
+                        <h3 class="account_info-name"><?php echo $row['fullname']; ?></h3>
+                        <?php ?>
                     </div>
                 </div>
-                <!-- COurse -->
-                <div class="account_course">
-                    <span class="account_course-title">Các khóa học đã đăng ký</span>
-                    <?php
 
-                    $sql_course = "SELECT course_major.* FROM course_major 
+                <div class="account_inner">
+                    <!-- intro -->
+                    <div class="account_intro">
+                        <div class="account_intro-item">
+                            <span class="account_intro-title">Giới thiệu</span>
+                            <p class="account_intro-desc"><i class="fa-solid fa-user-group"></i><span>Thành viên của <b>HUMG Education - Học để đi làm</b> từ một năm trước</span></p>
+                        </div>
+                        <div class="account_intro-item">
+                            <span class="account_intro-title">Hoạt động gần đây</span>
+                            <p class="account_intro-desc">Chưa có hoạt động gần đây</p>
+                        </div>
+                    </div>
+                    <!-- COurse -->
+                    <div class="account_course">
+                        <span class="account_course-title">Các khóa học đã đăng ký</span>
+                        <?php
+
+                        $sql_course = "SELECT course_major.* FROM course_major 
                         INNER JOIN user_courses ON course_major.course_id = user_courses.course_id 
                         WHERE user_courses.user_id=$user_id";
-                    $result_course = $conn->query($sql_course);
-                    if ($result_course->num_rows > 0) {
-                        while ($row_course = $result_course->fetch_assoc()) {
-                    ?>
-                            <div class="account_course-item">
-                                <img src="<?php echo $row_course['course_img'] ?>" alt="">
-                                <div class="account_course-content">
-                                    <h4 class="account_course-name"><?php echo $row_course['course_name'] ?></h4>
-                                    <p class="account_course-desc"><?php echo $row_course['description'] ?></p>
-                                    <div class="account_course-btn">
-                                        <a href="./course_detail.php?course_id=<?php echo $row_course['course_id']; ?>">Xem khóa học</a>
-                                        <?php
-                                        if ($_SESSION['role'] == 'user') {
-                                        ?>
-                                            <a href="../handler/unreg.php?course_id=<?php echo $row_course['course_id']; ?>">Hủy </a>
-                                        <?php }
-                                        ?>
+                        $result_course = $conn->query($sql_course);
+                        if ($result_course->num_rows > 0) {
+                            while ($row_course = $result_course->fetch_assoc()) {
+                        ?>
+                                <div class="account_course-item">
+                                    <img src="<?php echo $row_course['course_img'] ?>" alt="">
+                                    <div class="account_course-content">
+                                        <h4 class="account_course-name"><?php echo $row_course['course_name'] ?></h4>
+                                        <p class="account_course-desc"><?php echo $row_course['description'] ?></p>
+                                        <div class="account_course-btn">
+                                            <a href="./course_detail.php?course_id=<?php echo $row_course['course_id']; ?>">Xem khóa học</a>
+                                            <?php
+                                            if ($_SESSION['role'] == 'user') {
+                                            ?>
+                                                <a href="../handler/unreg.php?course_id=<?php echo $row_course['course_id']; ?>">Hủy </a>
+                                            <?php }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    <?php }
-                    } else {
-                        echo " <main class='main' style='margin-bottom: 15px;'>Bạn chưa đăng ký khóa học nào !</main>";
-                    }
-                    ?>
+                        <?php }
+                        } else {
+                            echo " <main class='main' style='margin-bottom: 15px;'>Bạn chưa đăng ký khóa học nào !</main>";
+                        }
+                        ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
         <footer class="footer"></footer>
     </div>
 </body>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="./js/app.js"></script>
 
 </html>
