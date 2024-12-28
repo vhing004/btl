@@ -12,123 +12,129 @@
     <?php
     session_start();
     require '../config/db.php';
-    if ($_SESSION['role'] == 'admin') {
+    if (isset($_SESSION['username'])) {
+        if ($_SESSION['role'] == 'admin') {
     ?>
-        <?php
-        //  USERS 
-        if (isset($_GET['user_id'])) {
-            $user_id = $_GET['user_id'];
-            $sql_user = "SELECT * FROM users WHERE user_id = '$user_id'";
-            $result_user = mysqli_query($conn, $sql_user);
-            $row_user = mysqli_fetch_assoc($result_user);
-        ?>
-            <form action="" class="index2" method="post">
-                <h3 class="title">Chỉnh Sửa USER</h3>
-                <input type="text" name="user_id" value="<?php echo $row_user['user_id']; ?>" hidden>
-                <div class="form_group">
-                    <label>Username</label>
-                    <input type="text" name="username" value="<?php echo $row_user['username']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Password</label>
-                    <input type="text" name="password" value="<?php echo $row_user['password']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Email</label>
-                    <input type="text" name="email" value="<?php echo $row_user['email']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Fullname</label>
-                    <input type="text" name="fullname" value="<?php echo $row_user['fullname']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Gender</label>
-                    <input type="text" name="gender" value="<?php echo $row_user['gender']; ?>">
-                </div>
-                <input type="submit" name="submit" value="Update" class="btn">
-            </form>
-        <?php } ?>
+            <?php
+            //  USERS 
+            if (isset($_GET['user_id'])) {
+                $user_id = $_GET['user_id'];
+                $sql_user = "SELECT * FROM users WHERE user_id = '$user_id'";
+                $result_user = mysqli_query($conn, $sql_user);
+                $row_user = mysqli_fetch_assoc($result_user);
+            ?>
+                <form action="" class="index2" method="post">
+                    <h3 class="title">Chỉnh Sửa USER</h3>
+                    <input type="text" name="user_id" value="<?php echo $row_user['user_id']; ?>" hidden>
+                    <div class="form_group">
+                        <label>Username</label>
+                        <input type="text" name="username" value="<?php echo $row_user['username']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Password</label>
+                        <input type="text" name="password" value="<?php echo $row_user['password']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Email</label>
+                        <input type="text" name="email" value="<?php echo $row_user['email']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Fullname</label>
+                        <input type="text" name="fullname" value="<?php echo $row_user['fullname']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Gender</label>
+                        <input type="text" name="gender" value="<?php echo $row_user['gender']; ?>">
+                    </div>
+                    <input type="submit" name="submit" value="Update" class="btn">
+                </form>
+            <?php } ?>
 
 
-        <?php
-        //  MAJOR 
-        if (isset($_GET['major_id'])) {
-            $major_id = $_GET['major_id'];
-            $sql_major = "SELECT * FROM major WHERE major_id = '$major_id'";
-            $result_major = mysqli_query($conn, $sql_major);
-            $row_major = mysqli_fetch_assoc($result_major);
-        ?>
-            <form action="" class="index2" method="post">
-                <h3 class="title">Chỉnh Sửa MAJOR</h3>
-                <input type="text" name="major_id" value="<?php echo $row_major['major_id']; ?>" hidden>
-                <div class="form_group">
-                    <label>Image</label>
-                    <input type="text" name="major_img" value="<?php echo $row_major['major_img']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Code</label>
-                    <input type="text" name="major_code" value="<?php echo $row_major['major_code']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Name</label>
-                    <input type="text" name="name" value="<?php echo $row_major['name']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Description</label>
-                    <input type="text" name="description" value="<?php echo $row_major['description']; ?>">
-                </div>
-                <input type="submit" name="submit" value="Update" class="btn">
-            </form>
-        <?php } ?>
+            <?php
+            //  MAJOR 
+            if (isset($_GET['major_id'])) {
+                $major_id = $_GET['major_id'];
+                $sql_major = "SELECT * FROM major WHERE major_id = '$major_id'";
+                $result_major = mysqli_query($conn, $sql_major);
+                $row_major = mysqli_fetch_assoc($result_major);
+            ?>
+                <form action="" class="index2" method="post">
+                    <h3 class="title">Chỉnh Sửa MAJOR</h3>
+                    <input type="text" name="major_id" value="<?php echo $row_major['major_id']; ?>" hidden>
+                    <div class="form_group">
+                        <label>Image</label>
+                        <input type="text" name="major_img" value="<?php echo $row_major['major_img']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Code</label>
+                        <input type="text" name="major_code" value="<?php echo $row_major['major_code']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Name</label>
+                        <input type="text" name="name" value="<?php echo $row_major['name']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Description</label>
+                        <input type="text" name="description" value="<?php echo $row_major['description']; ?>">
+                    </div>
+                    <input type="submit" name="submit" value="Update" class="btn">
+                </form>
+            <?php } ?>
 
 
-        <?php
-        //  COURSE 
-        if (isset($_GET['course_id'])) {
-            $course_id = $_GET['course_id'];
-            $sql_course = "SELECT * FROM course_major WHERE course_id = '$course_id'";
-            $result_course = mysqli_query($conn, $sql_course);
-            $row_course = mysqli_fetch_assoc($result_course);
-        ?>
-            <form action="" class="index2" method="post">
-                <h3 class="title">Chỉnh Sửa COURSE</h3>
-                <input type="text" name="course_id" value="<?php echo $row_course['course_id']; ?>" hidden>
-                <div class="form_group">
-                    <label>Image</label>
-                    <input type="text" name="course_img" value="<?php echo $row_course['course_img']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Code</label>
-                    <input type="text" name="course_code" value="<?php echo $row_course['course_code']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Name</label>
-                    <input type="text" name="course_name" value="<?php echo $row_course['course_name']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Description</label>
-                    <input type="text" name="description" value="<?php echo $row_course['description']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Video</label>
-                    <input type="text" name="video" value="<?php echo $row_course['video']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>rating</label>
-                    <input type="text" name="rating" value="<?php echo $row_course['rating']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Price</label>
-                    <input type="text" name="price" value="<?php echo $row_course['price']; ?>">
-                </div>
-                <div class="form_group">
-                    <label>Major ID</label>
-                    <input type="text" name="major_id" value="<?php echo $row_course['major_id']; ?>">
-                </div>
-                <input type="submit" name="submit" value="Update" class="btn">
-            </form>
-        <?php } ?>
-    <?php }
+            <?php
+            //  COURSE 
+            if (isset($_GET['course_id'])) {
+                $course_id = $_GET['course_id'];
+                $sql_course = "SELECT * FROM course_major WHERE course_id = '$course_id'";
+                $result_course = mysqli_query($conn, $sql_course);
+                $row_course = mysqli_fetch_assoc($result_course);
+            ?>
+                <form action="" class="index2" method="post">
+                    <h3 class="title">Chỉnh Sửa COURSE</h3>
+                    <input type="text" name="course_id" value="<?php echo $row_course['course_id']; ?>" hidden>
+                    <div class="form_group">
+                        <label>Image</label>
+                        <input type="text" name="course_img" value="<?php echo $row_course['course_img']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Code</label>
+                        <input type="text" name="course_code" value="<?php echo $row_course['course_code']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Name</label>
+                        <input type="text" name="course_name" value="<?php echo $row_course['course_name']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Description</label>
+                        <input type="text" name="description" value="<?php echo $row_course['description']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Video</label>
+                        <input type="text" name="video" value="<?php echo $row_course['video']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>rating</label>
+                        <input type="text" name="rating" value="<?php echo $row_course['rating']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Price</label>
+                        <input type="text" name="price" value="<?php echo $row_course['price']; ?>">
+                    </div>
+                    <div class="form_group">
+                        <label>Major ID</label>
+                        <input type="text" name="major_id" value="<?php echo $row_course['major_id']; ?>">
+                    </div>
+                    <input type="submit" name="submit" value="Update" class="btn">
+                </form>
+            <?php } ?>
+    <?php } else {
+            echo "Bạn không có quyền truy cập trang này" . "<a href='../index.php'>Về trang chủ</a>";
+        }
+    } else {
+        header("location: ../pages/login.php");
+    }
     ?>
 </body>
 

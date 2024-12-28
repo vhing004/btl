@@ -13,45 +13,51 @@
         <?php
         session_start();
         require '../config/db.php';
-        if ($_SESSION['role'] == 'admin') {
+        if (isset($_SESSION['username'])) {
+            if ($_SESSION['role'] == 'admin') {
         ?>
-            <form action="" class="form" method="post">
-                <h3 class="title">Thêm dữ liệu COURSE</h3>
-                <div class="form_group">
-                    <label>Ảnh</label>
-                    <input type="text" name="course_img" placeholder="Link ảnh" require>
-                </div>
-                <div class="form_group">
-                    <label>Mã khóa học</label>
-                    <input type="text" name="course_code" placeholder="Mã" require>
-                </div>
-                <div class="form_group">
-                    <label>Tên khóa học</label>
-                    <input type="text" name="course_name" placeholder="Tên" require>
-                </div>
-                <div class="form_group">
-                    <label>Mô tả</label>
-                    <input type="text" name="description" placeholder="Mô tảtả" require>
-                </div>
-                <div class="form_group">
-                    <label>Video</label>
-                    <input type="text" name="video" placeholder="Video" require>
-                </div>
-                <div class="form_group">
-                    <label>Đánh giá</label>
-                    <input type="text" name="rating" placeholder="Đánh giá" require>
-                </div>
-                <div class="form_group">
-                    <label>GiáGiá</label>
-                    <input type="text" name="price" placeholder="GiáGiá" require>
-                </div>
-                <div class="form_group">
-                    <label>Mã chuyên ngành</label>
-                    <input type="text" name="major_id" placeholder="Mã chuyên ngành" require>
-                </div>
-                <input class="btn" type="submit" name="submit" value="Thêm">
-            </form>
-        <?php }
+                <form action="" class="form" method="post">
+                    <h3 class="title">Thêm dữ liệu COURSE</h3>
+                    <div class="form_group">
+                        <label>Ảnh</label>
+                        <input type="text" name="course_img" placeholder="Link ảnh" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Mã khóa học</label>
+                        <input type="text" name="course_code" placeholder="Mã" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Tên khóa học</label>
+                        <input type="text" name="course_name" placeholder="Tên" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Mô tả</label>
+                        <input type="text" name="description" placeholder="Mô tảtả" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Video</label>
+                        <input type="text" name="video" placeholder="Video" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Đánh giá</label>
+                        <input type="text" name="rating" placeholder="Đánh giá" require>
+                    </div>
+                    <div class="form_group">
+                        <label>GiáGiá</label>
+                        <input type="text" name="price" placeholder="GiáGiá" require>
+                    </div>
+                    <div class="form_group">
+                        <label>Mã chuyên ngành</label>
+                        <input type="text" name="major_id" placeholder="Mã chuyên ngành" require>
+                    </div>
+                    <input class="btn" type="submit" name="submit" value="Thêm">
+                </form>
+        <?php } else {
+                echo "Bạn không có quyền truy cập trang này" . "<a href='../index.php'>Về trang chủ</a>";
+            }
+        } else {
+            header("location: ../pages/login.php");
+        }
         ?>
     </div>
 </body>

@@ -28,5 +28,9 @@ if (isset($_SESSION['username'])) {
                 header("location: ./course.php");
             }
         }
+    } else {
+        echo "Bạn không có quyền truy cập trang này" . "<a href='../index.php'>Về trang chủ</a>";
     }
+} else {
+    header("location: ../pages/login.php");
 }
