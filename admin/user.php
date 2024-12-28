@@ -40,6 +40,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
+                    <th>Password </th>
                     <th>Email</th>
                     <th>Fullname</th>
                     <th>Gender</th>
@@ -61,6 +62,7 @@
                         <tr>
                             <td><?php echo $row_user['user_id']; ?></td>
                             <td><?php echo $row_user['username']; ?></td>
+                            <td><?php echo $row_user['password']; ?></td>
                             <td><?php echo $row_user['email']; ?></td>
                             <td><?php echo $row_user['fullname']; ?></td>
                             <td><?php echo $row_user['gender']; ?></td>

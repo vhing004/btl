@@ -30,6 +30,10 @@
                     <input type="text" name="username" value="<?php echo $row_user['username']; ?>">
                 </div>
                 <div class="form_group">
+                    <label>Password</label>
+                    <input type="text" name="password" value="<?php echo $row_user['password']; ?>">
+                </div>
+                <div class="form_group">
                     <label>Email</label>
                     <input type="text" name="email" value="<?php echo $row_user['email']; ?>">
                 </div>
@@ -135,11 +139,12 @@
 if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     $username = $_POST['username'];
+    $password = $_POST['password'];
     $email = $_POST['email'];
     $fullname = $_POST['fullname'];
     $gender = $_POST['gender'];
 
-    $sql_update_user = "UPDATE users SET username='$username', fullname='$fullname', gender='$gender', email='$email' WHERE user_id='$user_id'";
+    $sql_update_user = "UPDATE users SET username='$username', password='$password', fullname='$fullname', gender='$gender', email='$email' WHERE user_id='$user_id'";
 
     if ($conn->query($sql_update_user) === TRUE) {
         header("location: ./user.php");
