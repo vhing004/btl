@@ -26,7 +26,7 @@
                     <h2 class="header_logo-title">Humg Education</h2>
                 </a>
                 <form action="./pages/course_detail.php" class="header_search">
-                    <input type="text" name="search" placeholder="Tìm kiếm chuyên ngành" />
+                    <input type="text" name="search" placeholder="Tìm kiếm khóa học" />
                     <button class="header_search-btn">Tìm kiếm</button>
                 </form>
                 <div class="header_menu">
@@ -63,6 +63,7 @@
                                             <a href="./index.php">Trang chủ</a>
                                             <a href="./pages/account.php">Trang cá nhân</a>
                                             <a href="./pages/personal.php">Cài đặt</a>
+                                            <a href="./pages/cart.php">Giỏ hàng</a>
                                         <?php } else {
                                         ?>
                                             <a href="./admin/index.php">Trang quản trị</a>
@@ -161,7 +162,7 @@
                                                         <span class="video"><?php echo $row2['video']; ?> Videos</span>
                                                         <span class="star"><b><?php echo $row2['rating']; ?></b><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star-half-stroke"></i></span>
                                                     </div>
-                                                    <span class="course_content-price"><?php echo $row2['price']; ?> VND</span>
+                                                    <span class="course_content-price"><?php echo number_format($row2['price']); ?> VND</span>
                                                 </div>
                                             </div>
                                         </a>

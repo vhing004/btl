@@ -83,11 +83,39 @@
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 1px 1px 10px #ccc;
+    &-btns {
+      display: flex;
+      margin-bottom: 25px;
+      position: relative;
+      // align-items: center;
+      gap: 20px;
+      & .cart {
+        height: 45px;
+        width: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        // padding: 15px;
+        border: 1px solid $main-color;
+        &:hover {
+          background-color: $main-color;
+          & i {
+            color: #fff;
+          }
+        }
+        & i {
+          font-size: 25px;
+          color: $main-color;
+        }
+      }
+    }
     &-img {
       position: relative;
       height: 100%;
       & img {
         height: 100%;
+        width: 100%;
       }
       & .play {
         position: absolute;
@@ -127,7 +155,6 @@
       font-size: 18px;
       font-weight: bold;
       text-transform: uppercase;
-      margin-bottom: 25px;
       &:hover {
         transform: translateY(-5px);
         box-shadow: -3px 5px 2px #333;
@@ -142,11 +169,40 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      margin-top: 20px;
     }
     &-item {
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+  }
+  &_cart:hover .pane {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+  }
+  & .pane {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    white-space: nowrap;
+    top: -40px;
+    left: 0;
+    padding: 5px 8px;
+    background-color: #ccc;
+    color: #333;
+    opacity: 0;
+    visibility: hidden;
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: -5px;
+      left: 10px;
+      width: 12px;
+      height: 12px;
+      background-color: #ccc;
+      transform: rotate(45deg);
     }
   }
 }

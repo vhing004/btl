@@ -31,7 +31,7 @@ require '../config/db.php';
                     <h2 class="header_logo-title">Humg Education</h2>
                 </a>
                 <form class="header_search">
-                    <input type="text" name="search" placeholder="Tìm kiếm chuyên ngành" value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>" />
+                    <input type="text" name="search" placeholder="Tìm kiếm khóa học" value="<?php echo isset($_GET['search']) ? $_GET['search'] : '' ?>" />
                     <button class="header_search-btn">Tìm kiếm</button>
                 </form>
                 <div class="header_menu">
@@ -68,6 +68,8 @@ require '../config/db.php';
                                             <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="./personal.php">Cài đặt</a>
+                                            <a href="../pages/cart.php">Giỏ hàng</a>
+
                                         <?php } else {
                                         ?>
                                             <a href="../admin/index.php">Trang quản trị</a>
@@ -171,9 +173,15 @@ require '../config/db.php';
 
                                     if ($_SESSION['role'] == 'user') {
                                 ?>
-                                        <a
+                                        <!-- <a
                                             href="../handler/dangky.php?course_id=<?php echo $row['course_id']; ?>"
-                                            class="courseDetail_course-btn">Đăng ký ngay</a>
+                                            class="courseDetail_course-btn">Đăng ký ngay</a> -->
+                                        <div class="courseDetail_course-btns">
+                                            <div class="courseDetail_cart"> <a class="cart" href="../handler/add_to_cart.php?course_id=<?php echo $row['course_id']; ?>" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i></a><span class="pane">Thêm vào giỏ hàng</span></div>
+
+                                            <a href="../handler/payment.php?course_id=<?php echo $row['course_id']; ?>" class="courseDetail_course-btn">Mua ngay</a>
+                                        </div>
+
                                     <?php } else {
                                     ?>
                                         <a

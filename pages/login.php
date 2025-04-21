@@ -2,7 +2,7 @@
     $message_username = "";
     $message_password = "";
 
-    if (isset($_POST['submit'])) { // Đổi từ $_GET sang $_POST
+    if (isset($_POST['submit'])) { 
         require '../config/db.php';
 
         $username = $_POST['username'];

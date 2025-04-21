@@ -6,6 +6,7 @@ $(document).ready(function () {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 2000,
+    draggable: true,
     speed: 800,
     dots: true,
     arrows: false,
@@ -28,7 +29,7 @@ document.addEventListener("scroll", () => {
 // Cuộn lên đầu trang
 const scrollToTopBtn = document.getElementById("scrollToTop");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 500) {
+  if (window.scrollY > 1000) {
     scrollToTopBtn.style.display = "block";
   } else {
     scrollToTopBtn.style.display = "none";

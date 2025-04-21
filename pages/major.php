@@ -33,10 +33,10 @@ $result = $conn->query($sql);
                 <a href="../index.php" class="header_logo">
                     <h2 class="header_logo-title">Humg Education</h2>
                 </a>
-                <div class="header_search">
-                    <input type="text" placeholder="Tìm kiếm chuyên ngành" />
+                <form action="./course_detail.php" class="header_search">
+                    <input type="text" name="search" placeholder="Tìm kiếm khóa học" />
                     <button class="header_search-btn">Tìm kiếm</button>
-                </div>
+                </form>
                 <div class="header_menu">
                     <?php
                     // session_start();
@@ -71,6 +71,8 @@ $result = $conn->query($sql);
                                             <a href="../index.php">Trang chủ</a>
                                             <a href="./account.php">Trang cá nhân</a>
                                             <a href="./personal.php">Cài đặt</a>
+                                            <a href="../pages/cart.php">Giỏ hàng</a>
+
                                         <?php } else {
                                         ?>
                                             <a href="../admin/index.php">Trang quản trị</a>
